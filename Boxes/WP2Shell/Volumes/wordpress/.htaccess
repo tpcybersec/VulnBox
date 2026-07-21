@@ -1,0 +1,22 @@
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^apple-touch-icon\.png /wp-content/uploads/fbrfg/apple-touch-icon.png [QSA,L]
+RewriteRule ^favicon-96x96\.png /wp-content/uploads/fbrfg/favicon-96x96.png [QSA,L]
+RewriteRule ^favicon\.ico /wp-content/uploads/fbrfg/favicon.ico [QSA,L]
+RewriteRule ^favicon\.svg /wp-content/uploads/fbrfg/favicon.svg [QSA,L]
+RewriteRule ^site\.webmanifest /wp-content/uploads/fbrfg/site.webmanifest [QSA,L]
+RewriteRule ^web-app-manifest-192x192\.png /wp-content/uploads/fbrfg/web-app-manifest-192x192.png [QSA,L]
+RewriteRule ^web-app-manifest-512x512\.png /wp-content/uploads/fbrfg/web-app-manifest-512x512.png [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

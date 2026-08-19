@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Login - Flask Secret Page{% endblock %}
+{% block content %}
+<section class="form-card">
+    <h1>Login</h1>
+    <p class="hint">
+        Don't have an account? Enter a username and password anyway &mdash;
+        any new login will create the account on the fly.
+    </p>
+
+    {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('login') }}">
+        <label>
+            <span>Username</span>
+            <input
+                type="text"
+                name="username"
+                value="{{ username or '' }}"
+                required
+                autofocus
+                autocomplete="username"
+            >
+        </label>
+        <label>
+            <span>Password</span>
+            <input
+                type="password"
+                name="password"
+                required
+                autocomplete="current-password"
+            >
+        </label>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    <p class="meta">
+        No account yet? <a href="{{ url_for('register') }}">Register</a>.
+    </p>
+</section>
+{% endblock %}

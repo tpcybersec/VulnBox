@@ -1,0 +1,15 @@
+# Author: truocphan
+# Date: 19.08.2026
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: prssi-vuln-app
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    volumes:
+      - ./PRSSI/static:/app/static:ro
+      - ./PRSSI/templates:/app/templates:ro
+      - ./PRSSI/flag.txt:/app/flag.txt:ro

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PRSSI{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}" class="brand">PRSSI</a>
+        <div class="nav-links">
+            {% if user %}
+                <span class="user">Logged in as <strong>{{ user }}</strong></span>
+                <a href="{{ url_for('flag') }}">Flag</a>
+                <a href="{{ url_for('feedback') }}">Feedback</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+                <a href="{{ url_for('feedback') }}">Feedback</a>
+            {% endif %}
+        </div>
+    </nav>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

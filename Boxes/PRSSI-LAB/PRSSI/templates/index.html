@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% block title %}Notes &amp; Nonsense — a small blog about code and craft{% endblock %}
+{% block content %}
+<style>
+    .post-card {
+        background: #fff;
+        border: 1px solid #e1e4e8;
+        border-radius: 6px;
+        padding: 20px 24px;
+        margin-bottom: 16px;
+        transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .post-card:hover {
+        border-color: #d0d7de;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+    .post-card .meta-row {
+        color: #6a737d;
+        font-size: 0.85em;
+        margin-bottom: 6px;
+    }
+    .post-card h2 {
+        margin: 0 0 8px;
+        font-size: 1.35em;
+        line-height: 1.3;
+    }
+    .post-card h2 a {
+        color: #24292e;
+        text-decoration: none;
+    }
+    .post-card h2 a:hover {
+        color: #0969da;
+    }
+    .post-card .excerpt {
+        color: #586069;
+        margin: 0 0 12px;
+    }
+    .post-card .read-more {
+        color: #0969da;
+        text-decoration: none;
+        font-size: 0.9em;
+        font-weight: 500;
+    }
+    .post-card .read-more:hover {
+        text-decoration: underline;
+    }
+    .tag {
+        display: inline-block;
+        background: #ddf4ff;
+        color: #0969da;
+        padding: 2px 8px;
+        border-radius: 99px;
+        font-size: 0.72em;
+        font-weight: 600;
+        margin-right: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+    .tag.craft { background: #fff3cd; color: #735c0f; }
+    .tag.tools { background: #dafbe1; color: #1a7f37; }
+
+    .subscribe-form {
+        display: flex;
+        gap: 8px;
+        margin-top: 20px;
+        max-width: 420px;
+    }
+    .subscribe-form input[type="email"] {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+    }
+    .subscribe-form input[type="email"]:focus {
+        outline: none;
+        border-color: #0969da;
+        box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.1);
+    }
+    .subscribe-form button {
+        margin: 0;
+    }
+    .subscribe-note {
+        color: #6a737d;
+        font-size: 0.85em;
+        margin-top: 8px;
+    }
+</style>
+
+<section class="hero">
+    <h1>Notes &amp; Nonsense</h1>
+    <p class="lead">
+        A small blog about code, craft, and the things I learn along the way.
+        Updated whenever I have something worth sharing &mdash; no schedule,
+        no SEO, no popups.
+    </p>
+
+    <form class="subscribe-form"
+          onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed ✓'; this.querySelector('input').value='';">
+        <input type="email" placeholder="you@example.com" aria-label="Email address" required>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+    <p class="subscribe-note">Get new posts in your inbox. No spam, unsubscribe anytime.</p>
+</section>
+
+<section class="info">
+    <h2>Latest posts</h2>
+
+    <article class="post-card">
+        <div class="meta-row">
+            <span class="tag">code</span>
+            August 14, 2026 &middot; 6 min read
+        </div>
+        <h2><a href="#">Notes on building a tiny compiler</a></h2>
+        <p class="excerpt">
+            What I learned from writing a small expression compiler in Rust
+            over a long weekend. Parsing, type checking, and the surprising
+            amount of fun you can have with enums and pattern matching.
+        </p>
+        <a href="#" class="read-more">Read more &rarr;</a>
+    </article>
+
+    <article class="post-card">
+        <div class="meta-row">
+            <span class="tag tools">tools</span>
+            August 4, 2026 &middot; 3 min read
+        </div>
+        <h2><a href="#">Why I switched to Neovim (and what made me stay)</a></h2>
+        <p class="excerpt">
+            After a decade of bouncing between editors, I finally landed.
+            A short tour through my config, the plugins that earned their
+            keep, and the habits that made the real difference.
+        </p>
+        <a href="#" class="read-more">Read more &rarr;</a>
+    </article>
+
+    <article class="post-card">
+        <div class="meta-row">
+            <span class="tag craft">craft</span>
+            July 22, 2026 &middot; 4 min read
+        </div>
+        <h2><a href="#">The cost of a feature flag</a></h2>
+        <p class="excerpt">
+            Feature flags look free on a sprint planning doc. They are not.
+            A few thoughts on the long tail of conditional code, and when
+            it&rsquo;s worth paying the cleanup bill.
+        </p>
+        <a href="#" class="read-more">Read more &rarr;</a>
+    </article>
+
+    <article class="post-card">
+        <div class="meta-row">
+            <span class="tag">code</span>
+            July 9, 2026 &middot; 5 min read
+        </div>
+        <h2><a href="#">Writing a static site generator I don&rsquo;t need</a></h2>
+        <p class="excerpt">
+            Sometimes the best way to learn a tool is to reinvent a worse
+            version of it. A weekend project, a few hundred lines of Python,
+            and one less thing on my &ldquo;maybe someday&rdquo; list.
+        </p>
+        <a href="#" class="read-more">Read more &rarr;</a>
+    </article>
+</section>
+
+<section class="info">
+    <h2>About this site</h2>
+    <p>
+        Notes &amp; Nonsense is a quiet corner of the internet where I write
+        about the things I&rsquo;m working on. It&rsquo;s plain HTML and a
+        small Python backend, and that&rsquo;s the way I like it.
+    </p>
+    <p style="color: #6a737d; font-size: 0.85em; margin-top: 12px; margin-bottom: 0;">
+        Powered by <strong>PRSSI</strong> &mdash; Private Reactive Session Service Interface.
+    </p>
+    {% if user %}
+    <p style="color: #586069; margin-bottom: 0;">
+        You&rsquo;re signed in as <strong>{{ user }}</strong>.
+        <a href="{{ url_for('feedback') }}" style="color: #0969da;">Send feedback</a>
+        or
+        <a href="{{ url_for('logout') }}" style="color: #0969da;">sign out</a>.
+    </p>
+    {% else %}
+    <p style="color: #586069; margin-bottom: 0;">
+        <a href="{{ url_for('login') }}" style="color: #0969da;">Sign in</a>
+        or
+        <a href="{{ url_for('register') }}" style="color: #0969da;">create an account</a>
+        to leave comments and follow along.
+    </p>
+    {% endif %}
+</section>
+{% endblock %}

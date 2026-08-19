@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Register - Flask Secret Page{% endblock %}
+{% block content %}
+<section class="form-card">
+    <h1>Register</h1>
+    <p class="hint">
+        Creating an account also logs you in. If the username already
+        exists, submitting the form will log you in with the password you
+        just typed (or re-create the account if the password differs).
+    </p>
+
+    {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('register') }}">
+        <label>
+            <span>Username</span>
+            <input
+                type="text"
+                name="username"
+                value="{{ username or '' }}"
+                required
+                autofocus
+                autocomplete="username"
+            >
+        </label>
+        <label>
+            <span>Password</span>
+            <input
+                type="password"
+                name="password"
+                required
+                autocomplete="new-password"
+            >
+        </label>
+        <button type="submit" class="btn btn-primary">Create account</button>
+    </form>
+
+    <p class="meta">
+        Already have an account? <a href="{{ url_for('login') }}">Login</a>.
+    </p>
+</section>
+{% endblock %}

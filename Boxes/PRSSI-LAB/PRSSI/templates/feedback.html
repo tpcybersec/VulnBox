@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Feedback - PRSSI{% endblock %}
+{% block content %}
+<style>
+    .form-card textarea {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+        resize: vertical;
+        box-sizing: border-box;
+    }
+    .form-card textarea:focus {
+        outline: none;
+        border-color: #0969da;
+        box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.1);
+    }
+    .alert-success {
+        background: #dafbe1;
+        border: 1px solid #1f883d;
+        color: #1a7f37;
+    }
+</style>
+<section class="form-card">
+    <h1>Send us your feedback</h1>
+    <p class="hint">
+        Have a question, comment, or suggestion? We'd love to hear from you.
+        Fill out the form below and we'll get back to you as soon as we can.
+    </p>
+
+    {% if success %}
+        <div class="alert alert-success">
+            Thanks for your feedback, <strong>{{ submitted_name }}</strong>!
+            We've received your message and will reply to
+            <strong>{{ submitted_email }}</strong> shortly.
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('feedback') }}">
+        <label>
+            <span>Your name</span>
+            <input
+                type="text"
+                name="name"
+                value="{{ submitted_name or '' }}"
+                required
+                autofocus
+                autocomplete="name"
+            >
+        </label>
+        <label>
+            <span>Email</span>
+            <input
+                type="email"
+                name="email"
+                value="{{ submitted_email or '' }}"
+                required
+                autocomplete="email"
+            >
+        </label>
+        <label>
+            <span>Message</span>
+            <textarea
+                name="message"
+                rows="6"
+                required
+                placeholder="Tell us what's on your mind..."
+            >{{ submitted_message or '' }}</textarea>
+        </label>
+        <label>
+            <span>Related URL (optional)</span>
+            <input
+                type="url"
+                name="url"
+                placeholder="https://example.com/page-with-issue"
+                value="{{ submitted_url or '' }}"
+            >
+        </label>
+        <button type="submit" class="btn btn-primary">Send feedback</button>
+    </form>
+</section>
+{% endblock %}
